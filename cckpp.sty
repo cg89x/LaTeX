@@ -1,0 +1,80 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{cckpp}[2014/08/21 CCK Personal Preferences]
+
+%% Require some packages
+\RequirePackage{fullpage}
+\RequirePackage[T1]{fontenc}
+
+\RequirePackage{amsfonts}
+\RequirePackage{amsmath}
+\RequirePackage{bm}
+
+\RequirePackage{graphicx}
+
+\RequirePackage{cancel}
+\RequirePackage[breaklinks]{hyperref}
+\RequirePackage{xcolor}
+\RequirePackage{svg}
+
+\RequirePackage{enumitem}
+
+\RequirePackage{booktabs}
+\RequirePackage{dcolumn}
+\RequirePackage{threeparttable}
+\RequirePackage{caption}
+\RequirePackage[position=top]{subcaption}
+
+\RequirePackage{rotating}
+\RequirePackage{pdflscape}
+
+%% Font, styling, etc.
+% \RequirePackage{fontspec}
+% \setmainfont{Linux Libertine}
+   % [Ligatures={Common,Rare,Historic}, Numbers=OldStyle]
+\RequirePackage{libertine}
+\newcommand{\svgfontsize}[0]{\fontsize{9}{10}\selectfont}
+
+\captionsetup[table]{position=above}
+\captionsetup[table]{skip=2pt}
+
+\setlist[enumerate]{topsep=1pt}
+
+%% Math operators
+\newcommand{\E}[1]{\mathbb{E}\left[#1\right]}
+\newcommand{\Var}[1]{\operatorname{Var}\left( #1 \right)}
+\newcommand{\Cov}[1]{\operatorname{Cov}\left( #1 \right)}
+\newcommand{\bforall}[0]{\hspace{0.1cm} \forall \hspace{0.1cm}}
+\DeclareMathOperator*{\argmin}{\arg\!\min}
+\DeclareMathOperator*{\argmax}{\arg\!\max}
+\DeclareMathOperator*{\plim}{plim}
+\newcommand\sosd{\mathrel{\overset{\makebox[0pt]{\mbox{\normalfont\tiny\sffamily SOSD}}}{>}}}
+\newcommand\fosd{\mathrel{\overset{\makebox[0pt]{\mbox{\normalfont\tiny\sffamily FOSD}}}{>}}}
+\newcommand{\vect}[1]{\boldsymbol{#1}}
+
+%% Title builder
+\newcommand{\buildtitle}{
+		\vspace{-0.8in}
+		\maketitle
+		\begin{center}
+		\vspace{-0.8in}
+		\end{center}
+		\noindent
+		\rule{\linewidth}{0.4pt}
+}
+
+%% Hyperlink Colors
+\hypersetup{
+	colorlinks,
+	linkcolor={red!50!black},
+	citecolor={blue!50!black},
+	urlcolor={blue!80!black},
+	pdfauthor={Christian Kontz}
+}
+
+\renewcommand\CancelColor{\color{red}}
+
+\newtheorem{theo}{Theorem}
+\newtheorem{defi}{Definition}
+\newtheorem{prop}{Proposition}
+\newtheorem{rema}{Remark}
+\newtheorem{coro}{Corollary}
