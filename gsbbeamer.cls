@@ -45,6 +45,7 @@
 	\setbeamercolor{subsection in sidebar shaded}{fg=cardinal}
 	
 	\setbeamercolor{frametitle}{fg=cardinal}
+	\setbeamercolor{title}{fg=cardinal}
 	\setbeamercolor{section name}{fg=white}
 
 	\setbeamercolor{itemize item}{fg=cardinal}
