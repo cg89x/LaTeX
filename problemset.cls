@@ -25,13 +25,14 @@
 \author{\texorpdfstring{\@MyAuthor{} --  \@MyEmail}{\@MyAuthor{}}}
 
 \newcommand{\buildtitle}{
-		\vspace{-5em}
+		\vspace{-2cm}
+		% \vspace{-5em}
 		\maketitle
 		\begin{center}
-		\vspace{-5em}
+		\vspace{-2cm}
 		\end{center}
-		\noindent
-		\rule{\linewidth}{0.4pt}
+		% \noindent
+		\rule{\linewidth}{0.5pt}
 }
 
 \pagestyle{fancy}
