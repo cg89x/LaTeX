@@ -28,9 +28,9 @@
 		\vspace{-2cm}
 		% \vspace{-5em}
 		\maketitle
-		\begin{center}
-		\vspace{-2cm}
-		\end{center}
+		% \begin{center}
+		\vspace{-1cm}
+		% \end{center}
 		% \noindent
 		\rule{\linewidth}{0.5pt}
 }
@@ -41,3 +41,4 @@
 \lhead{\@MyTitle{} -- \@MySubtitle{}}
 \fancyfoot[C]{\thepage}
 \setlength{\headsep}{0.35in}
+\setlength\parindent{0pt}

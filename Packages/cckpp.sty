@@ -1,81 +1,159 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{cckpp}[2014/08/21 CCK Personal Preferences]
 
-%% Require some packages
+%% Load packages
 \RequirePackage{fullpage}
 \RequirePackage[T1]{fontenc}
-
 \RequirePackage{amsfonts}
 \RequirePackage{amsmath}
+\RequirePackage{amsthm}
 \RequirePackage{bm}
-
 \RequirePackage{graphicx}
-
 \RequirePackage{cancel}
 \RequirePackage{hyperref}
 \RequirePackage{xcolor}
 \RequirePackage{svg}
-
 \RequirePackage{enumitem}
-
 \RequirePackage{booktabs}
 \RequirePackage{dcolumn}
 \RequirePackage{threeparttable}
 \RequirePackage{caption}
 \RequirePackage[position=top]{subcaption}
-
 \RequirePackage{rotating}
 \RequirePackage{pdflscape}
-
-%% Font, styling, etc.
-% \RequirePackage{fontspec}
-% \setmainfont{Linux Libertine}
-   % [Ligatures={Common,Rare,Historic}, Numbers=OldStyle]
 \RequirePackage{libertine}
-\newcommand{\svgfontsize}[0]{\fontsize{9}{10}\selectfont}
+\RequirePackage{stackengine}
+\RequirePackage{empheq}
+\RequirePackage[skins,theorems]{tcolorbox}
+\RequirePackage{accents}
 
-\captionsetup[table]{position=above}
-\captionsetup[table]{skip=2pt}
+% Color Settings 
+  \definecolor{cardinal}{HTML}{8C1515}
+  \newcommand{\red}{\color{cardinal}}
+  \newcommand{\green}{\color{green}}
+  \newcommand{\blue}{\color{blue}}
 
-\setlist[enumerate]{topsep=1pt}
+  \hypersetup{
+    breaklinks,
+    colorlinks,
+    linkcolor={red!50!black},
+    citecolor={blue!50!black},
+    urlcolor={blue!80!black},
+    % pdfauthor={Christian Kontz}
+  }
+
+  \renewcommand\CancelColor{\color{red}}
+
+  \newtcbox{\mymath}[1][]{%
+      nobeforeafter, 
+      math upper,
+      tcbox raise base,
+      enhanced, 
+      colframe=red,
+      colback=white, 
+      boxrule=2pt,
+      drop fuzzy shadow=blue,
+      #1
+      }
+
+% Caption Settings
+  \captionsetup[table]{position=above}
+  \captionsetup[table]{skip=2pt}
+
+% List Settings
+  \setlist[enumerate]{topsep=1pt}
+
+% SVG Fonts Settings
+  \newcommand{\svgfontsize}[0]{\fontsize{9}{10}\selectfont}
 
 %% Math operators
-\newcommand{\E}[1]{\mathbb{E}\left[#1\right]}
-\newcommand{\Var}[1]{\operatorname{Var}\left( #1 \right)}
-\newcommand{\Cov}[1]{\operatorname{Cov}\left( #1 \right)}
-\newcommand{\bforall}[0]{\hspace{0.1cm} \forall \hspace{0.1cm}}
-\DeclareMathOperator*{\argmin}{\arg\!\min}
-\DeclareMathOperator*{\argmax}{\arg\!\max}
-\DeclareMathOperator*{\plim}{plim}
-\newcommand\sosd{\mathrel{\overset{\makebox[0pt]{\mbox{\normalfont\tiny\sffamily SOSD}}}{>}}}
-\newcommand\fosd{\mathrel{\overset{\makebox[0pt]{\mbox{\normalfont\tiny\sffamily FOSD}}}{>}}}
-\newcommand{\vect}[1]{\boldsymbol{#1}}
+  \newcommand{\Set}[1]{\left\{ #1 \right\}}
 
-% %% Title builder
-% \newcommand{\buildtitle}{
-% 		\vspace{-0.8in}
-% 		\maketitle
-% 		\begin{center}
-% 		\vspace{-0.8in}
-% 		\end{center}
-% 		\noindent
-% 		\rule{\linewidth}{0.4pt}
-% }
+  \newcommand{\ubar}[1]{\underaccent{\bar}{#1}}
+  \renewcommand{\t}[1]{\tilde{#1}}
+  \newcommand{\ut}[1]{\underaccent{\tilde}{#1}}
 
-%% Hyperlink Colors
-\hypersetup{
-	breaklinks,
-	colorlinks,
-	linkcolor={red!50!black},
-	citecolor={blue!50!black},
-	urlcolor={blue!80!black},
-	% pdfauthor={Christian Kontz}
-}
+  \newcommand{\e}[1]{{e}^{#1}}
+  \newcommand{\Exp}[1]{\operatorname{exp}\left( #1 \right)}
+  \newcommand*\di{\mathop{}\!\mathrm{d}}
+  \newcommand{\bforall}[0]{\hspace{0.1cm} \forall \hspace{0.1cm}}
 
-\renewcommand\CancelColor{\color{red}}
+  \renewcommand{\Pr}[1]{\operatorname{Pr}\left[ #1 \right]}
+  \newcommand{\E}[2]{\mathbb{E}_{#1}\left[#2\right]}
+  \newcommand{\Et}[1]{\mathbb{E}_{#1}}
+  \newcommand{\V}[2]{\mathbb{V}_{#1}\left[#2\right]}
+  \newcommand{\Var}[1]{\operatorname{Var}\left( #1 \right)}
+  \newcommand{\Cov}[1]{\operatorname{Cov}\left( #1 \right)}
 
-\newtheorem{theo}{Theorem}
-\newtheorem{defi}{Definition}
-\newtheorem{prop}{Proposition}
-\newtheorem{rema}{Remark}
-\newtheorem{coro}{Corollary}
+  \DeclareMathOperator*{\argmin}{\arg\!\min}
+  \DeclareMathOperator*{\argmax}{\arg\!\max}
+  \DeclareMathOperator*{\plim}{plim}
+
+  \newcommand{\vect}[1]{\boldsymbol{#1}}
+  \newcommand{\Lra}{\Leftrightarrow}
+  \newcommand{\Ra}{\Rightarrow}
+  \newcommand{\La}{\Leftarrow}
+  \newcommand{\ra}{\rightarrow}
+  \newcommand{\la}{\leftarrow}
+
+  \newcommand{\R}[1]{\mathbb{R}^{#1}}
+
+  \newcommand{\utext}[2]{\underbrace{#1}_{\text{#2}}}
+
+  \newcommand{\sdif}[2]{\frac{\partial^2 #1}{\partial #2 ^2}}
+  \newcommand{\cdif}[3]{\frac{\partial^2 #1}{\partial #2 \partial #3 }}
+  \newcommand{\fdif}[2]{\frac{\partial #1}{\partial #2}}
+
+  \newcommand\sosd{\mathrel{\overset{\makebox[0pt]{\mbox{\normalfont\tiny\sffamily SOSD}}}{>}}}
+  \newcommand\fosd{\mathrel{\overset{\makebox[0pt]{\mbox{\normalfont\tiny\sffamily FOSD}}}{>}}}
+
+  \newcommand{\mat}[1]{\begin{pmatrix} #1 \end{pmatrix}}
+  \newcommand{\eqz}{\overset{!}{=}}
+
+  \newcommand{\nn}{\nonumber \\}
+
+  \newcommand\Circle[1]{%
+    \def\useanchorwidth{T}%
+    \def\stacktype{L}%
+    \stackon[0pt]{#1}{\scalebox{2.8}[1.15]{\textcolor{red}{$\bigcirc$}}}%
+  }
+
+% New Environments
+  \newenvironment{result}{%
+      \empheq[box={\mymath}]{align}}{\endempheq}
+
+  \newenvironment{ans}{%
+      \tcolorbox[nobeforeafter, 
+      % tcbox raise base,
+      enhanced, 
+      width=\textwidth,
+      colframe=red,
+      colback=white, 
+      boxrule=2pt,
+      drop fuzzy shadow=blue]}{\endtcolorbox}
+
+% Utility Functions
+  \newcommand{\crra}[1]{\frac{\left(#1\right)^{1-\gamma}}{1-\gamma}}
+  \newcommand{\risk}{1-\gamma}
+
+% Distributions
+  \newcommand{\Normal}[2]{
+  \ifthenelse{\equal{#1}{} \AND \equal{#2}{}}{\mathcal{N}\left(\mu,\sigma^2\right)}{\mathcal{N}\left(#1,#2\right)}%
+  }
+
+% Game Theory
+  \newcommand{\Game}[1]{\Gamma \left(#1\right)}
+
+% Theorems etc.
+  \newtheorem{theo}{Theorem}
+  \newtheorem{defi}[theo]{Definition}
+  \newtheorem{prop}[theo]{Proposition}
+  \newtheorem{rema}[theo]{Remark}
+  \newtheorem{coro}[theo]{Corollary}
+  \newtheorem{Problem}[theo]{Problem}
+
+  \newtheorem*{probcont}{Problem \continuation}
+  \newcommand{\continuation}{??}
+  \newenvironment{continueproblem}[1]
+   {\renewcommand{\continuation}{\ref{#1}}\probcont[cont]}
+   {\endprobcont}
