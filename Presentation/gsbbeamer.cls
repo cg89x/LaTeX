@@ -45,6 +45,8 @@
 	\setbeamercolor{section in sidebar shaded}{bg=cardinal,fg=white}
 	\setbeamercolor{section name}{bg=cardinal,fg=white}
 	\setbeamercolor{author in head/foot}{bg=cardinal,fg=white}
+
+	\setbeamercolor{button}{bg=cardinal,fg=white}
 	
 	\setbeamercolor{subsection in head/foot}{fg=cardinal}
 	\setbeamercolor{subsection in sidebar}{fg=cardinal}
@@ -109,7 +111,7 @@
 	\setbeamercolor{page number in head/foot}{fg=cardinal}
 	\setbeamercolor{section in head/foot}{fg=white}
 	\begin{frame}{\subsecname}
-		\unilogo
+		% \unilogo
 	}{
 	\end{frame}
 }
@@ -131,17 +133,17 @@
 }
 
 \newcommand{\white}{\color{white}}
-\newcommand{\cardinal}{\color{white}}
+% \newcommand{\cardinal}{\color{white}}
 \newcommand{\black}{\color{black}}
 
-%% automatic section title slide before each new section starts
+% automatic section title slide before each new section starts
 \newcommand\mytableofcontents{%
    \begingroup
    \def\beamer@writeslidentry{\clearpage\beamer@notesactions}%
    \setbeamercolor{page number in head/foot}{fg=date in head/foot.bg}
    \frame{%
 	  \frametitle{\subsubsecname}%
-	  \unilogo
+	  % \unilogo
 	   \vfill
 		\centering
 		\addtocounter{framenumber}{-1}
@@ -158,8 +160,9 @@
 
 \newcommand{\mytitlepage}{
 	\setbeamercolor{page number in head/foot}{fg=date in head/foot.bg}
+	\setbeamercolor*{title}{bg=cardinal,fg=white}
 	\begin{frame}[noframenumbering]{\subsecname}
-		\titlepage
 		\unilogo
+		\titlepage
 	\end{frame}
 }

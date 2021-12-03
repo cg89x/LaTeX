@@ -2,38 +2,60 @@
 \ProvidesPackage{cckpp}[2014/08/21 CCK Personal Preferences]
 
 %% Load packages
-\RequirePackage{fullpage}
-\RequirePackage[T1]{fontenc}
-\RequirePackage{amsfonts}
-\RequirePackage{amsmath}
-\RequirePackage{amsthm}
-\RequirePackage{bm}
-\RequirePackage{graphicx}
-\RequirePackage{cancel}
-\RequirePackage{hyperref}
-\RequirePackage{xcolor}
-\RequirePackage{svg}
-\RequirePackage{enumitem}
-\RequirePackage{booktabs}
-\RequirePackage{dcolumn}
-\RequirePackage{threeparttable}
-\RequirePackage{caption}
-\RequirePackage[position=top]{subcaption}
-\RequirePackage{rotating}
-\RequirePackage{pdflscape}
-\RequirePackage{libertine}
-\RequirePackage{stackengine}
-\RequirePackage{empheq}
-\RequirePackage[skins,theorems]{tcolorbox}
-\RequirePackage{accents}
+  \RequirePackage{fullpage}
+  \RequirePackage[T1]{fontenc}
+  % Math Packages
+  \RequirePackage{amsfonts}
+  \RequirePackage{amsmath}
+  \RequirePackage{amsthm}
+  \RequirePackage{amssymb}
+  \RequirePackage{bm}
+  % Graphics Packages
+  \usepackage{tikz}
+  \usetikzlibrary{snakes}
+  \RequirePackage{xcolor}
+  \RequirePackage{svg}
+  \RequirePackage{graphicx}
+  \RequirePackage{dsfont}
+  \RequirePackage{cancel}
+  \RequirePackage{hyperref}
+  \RequirePackage{pdflscape}
+  % Table \ List Packages
+  \RequirePackage{enumitem}
+  \RequirePackage{booktabs}
+  \RequirePackage{multirow,array}
+  \RequirePackage{dcolumn}
+  \RequirePackage{threeparttable}
+  \RequirePackage{caption}
+  \RequirePackage[position=top]{subcaption}
+  \RequirePackage{rotating}
+  % Font packages
+  \RequirePackage{libertine}
+  \RequirePackage{accents}
+  \RequirePackage{parskip}
+
+  \RequirePackage{xparse}
+  \RequirePackage{stackengine}
+  \RequirePackage{empheq}
+  \RequirePackage[skins,theorems,most]{tcolorbox}
 
 % Color Settings 
   \definecolor{cardinal}{HTML}{8C1515}
+  \definecolor{brgreen}{HTML}{005630}
+  \definecolor{oranje}{HTML}{ff8c00}
+  \definecolor{greyy}{HTML}{A9A9A9}
+  \definecolor{lgreyy}{HTML}{D3D3D3}
+
   \newcommand{\red}{\color{cardinal}}
-  \newcommand{\green}{\color{green}}
+  \newcommand{\grey}{\color{greyy}}
+  \newcommand{\lgrey}{\color{lgreyy}}
+  \newcommand{\black}{\color{black}}
+  \newcommand{\green}{\color{brgreen}}
   \newcommand{\blue}{\color{blue}}
+  \newcommand{\orange}{\color{oranje}}
 
   \hypersetup{
+    bookmarks,
     breaklinks,
     colorlinks,
     linkcolor={red!50!black},
@@ -67,27 +89,60 @@
   \newcommand{\svgfontsize}[0]{\fontsize{9}{10}\selectfont}
 
 %% Math operators
+  % \renewcommand{\d}{\text{d}}
+  \newcommand{\Ltwo}{\mathcal{L}^{2}}
+  \newcommand{\Filt}{\mathcal{F}}
+  \newcommand{\Htwo}{\mathcal{H}^{2}}
   \newcommand{\Set}[1]{\left\{ #1 \right\}}
 
-  \newcommand{\ubar}[1]{\underaccent{\bar}{#1}}
+  \newcommand{\Lim}[1]{\raisebox{0.5ex}{\scalebox{0.8}{$\displaystyle \lim_{#1}\;$}}}
+  \newcommand{\dx}[1]{\mathop{\mathrm{d}#1}}
+  \renewcommand{\d}[1]{\mathop{\mathrm{d}#1}}
+
+  \newcommand{\qtext}[1]{\qquad \text{#1 }}
+
+  \newcommand{\ubar}[1]{\underbar{$#1$}}
+  \renewcommand{\bar}[1]{\overline{#1}}
   \renewcommand{\t}[1]{\tilde{#1}}
   \newcommand{\ut}[1]{\underaccent{\tilde}{#1}}
 
+  \newcommand{\ind}[1]{\mathds{1}_{#1}}
+
+  \newcommand{\ub}[2]{\underbrace{#1}_{#2}}
+  \newcommand{\utext}[2]{\underbrace{#1}_{#2}}
+  
   \newcommand{\e}[1]{{e}^{#1}}
   \newcommand{\Exp}[1]{\operatorname{exp}\left( #1 \right)}
+  \newcommand{\diag}[1]{\operatorname{diag}\left( #1 \right)}
   \newcommand*\di{\mathop{}\!\mathrm{d}}
   \newcommand{\bforall}[0]{\hspace{0.1cm} \forall \hspace{0.1cm}}
 
   \renewcommand{\Pr}[1]{\operatorname{Pr}\left[ #1 \right]}
   \newcommand{\E}[2]{\mathbb{E}_{#1}\left[#2\right]}
+  \newcommand{\ERN}[2]{\mathbb{E}^Q_{#1}\left[#2\right]}
+  \newcommand{\EP}[2]{\mathbb{E}^P_{#1}\left[#2\right]}
   \newcommand{\Et}[1]{\mathbb{E}_{#1}}
   \newcommand{\V}[2]{\mathbb{V}_{#1}\left[#2\right]}
-  \newcommand{\Var}[1]{\operatorname{Var}\left( #1 \right)}
-  \newcommand{\Cov}[1]{\operatorname{Cov}\left( #1 \right)}
+  \newcommand{\CV}[2]{\operatorname{Cov}_{#1}\left[#2\right]}
 
-  \DeclareMathOperator*{\argmin}{\arg\!\min}
+  \newcommand{\LRE}[1]{\tilde{\mathbb{E}}\left[#1\right]}
+  
+  \newcommand{\var}[2]{\operatorname{Var}_{#1}\left[ #2 \right]}
+  \newcommand{\corr}[2]{\operatorname{corr}_{#1}\left( #2 \right)}
+  \newcommand{\cov}[2]{\operatorname{Cov}_{#1}\left[ #2 \right]}
+  \newcommand{\varRN}[2]{\operatorname{Var}^{\star}_{#1}\left[ #2 \right]}
+
+  \newcommand{\Var}[1]{\operatorname{Var}\left[ #1 \right]}
+  \newcommand{\Cov}[1]{\operatorname{Cov}\left[ #1 \right]}
+  \newcommand{\Log}[1]{\operatorname{log}\left( #1 \right)}
+  \newcommand{\Ln}[1]{\operatorname{ln}\left( #1 \right)}
+
+
+  % \DeclareMathOperator*{\argmin}{\arg\!\min}
+  \newcommand{\argmin}{\mathop{\mathrm{argmin}}\limits}  
   \DeclareMathOperator*{\argmax}{\arg\!\max}
   \DeclareMathOperator*{\plim}{plim}
+  \DeclareMathOperator*{\supp}{supp}
 
   \newcommand{\vect}[1]{\boldsymbol{#1}}
   \newcommand{\Lra}{\Leftrightarrow}
@@ -96,21 +151,39 @@
   \newcommand{\ra}{\rightarrow}
   \newcommand{\la}{\leftarrow}
 
-  \newcommand{\R}[1]{\mathbb{R}^{#1}}
+  \newcommand{\Min}[1]{\operatorname{min} \left\{#1\right\} }
+  \newcommand{\Max}[1]{\operatorname{max} \left\{#1\right\} }
 
-  \newcommand{\utext}[2]{\underbrace{#1}_{\text{#2}}}
+  \newcommand{\R}[1]{\mathbb{R}^{#1}}
+  \newcommand{\N}{\mathbb{N}}
+
+  \newcommand{\sto}{\text{subject to}\quad}
 
   \newcommand{\sdif}[2]{\frac{\partial^2 #1}{\partial #2 ^2}}
   \newcommand{\cdif}[3]{\frac{\partial^2 #1}{\partial #2 \partial #3 }}
   \newcommand{\fdif}[2]{\frac{\partial #1}{\partial #2}}
+  \newcommand{\tdif}[2]{\frac{\di #1}{\di #2}}
 
   \newcommand\sosd{\mathrel{\overset{\makebox[0pt]{\mbox{\normalfont\tiny\sffamily SOSD}}}{>}}}
   \newcommand\fosd{\mathrel{\overset{\makebox[0pt]{\mbox{\normalfont\tiny\sffamily FOSD}}}{>}}}
 
   \newcommand{\mat}[1]{\begin{pmatrix} #1 \end{pmatrix}}
-  \newcommand{\eqz}{\overset{!}{=}}
+  \newcommand{\bmat}[1]{\begin{bmatrix} #1 \end{bmatrix}}
+  \newcommand{\eqz}{\overset{!}{=}0}
 
+  \newcommand{\foc}{\text{FOC:}}
+  \newcommand{\soc}{\text{SOC:}}
+  \newcommand{\simiid}{\overset{iid}{\sim}}
   \newcommand{\nn}{\nonumber \\}
+
+  % Sets
+  \newcommand{\union}{\cup}
+
+  \newcommand{\sign}[1]{\operatorname{sign}\left( #1 \right)}
+
+  % Linear Algebra
+  \newcommand{\rank}[1]{\operatorname{rank}\left( #1 \right)}
+
 
   \newcommand\Circle[1]{%
     \def\useanchorwidth{T}%
@@ -120,40 +193,96 @@
 
 % New Environments
   \newenvironment{result}{%
+      \empheq[box={\mymath}]{align*}}{\endempheq}
+
+   \newenvironment{resultnum}{%
       \empheq[box={\mymath}]{align}}{\endempheq}
 
-  \newenvironment{ans}{%
-      \tcolorbox[nobeforeafter, 
-      % tcbox raise base,
-      enhanced, 
-      width=\textwidth,
-      colframe=red,
-      colback=white, 
-      boxrule=2pt,
-      drop fuzzy shadow=blue]}{\endtcolorbox}
+  \newenvironment{prompt}[1][]{%
+    \tcolorbox[nobeforeafter, 
+    tcbox raise base,
+    title={#1},
+    % coltitle=black,
+    enhanced, 
+    width=\textwidth,
+    colframe=grey,
+    colback=lgrey, 
+    boxrule=2pt,
+    drop fuzzy shadow=grey]}%
+    {\endtcolorbox}
+  
+  \newenvironment{ans}[1][]{%
+    \setlength{\abovedisplayskip}{4pt}
+    \setlength{\belowdisplayskip}{4pt}
+    \tcolorbox[nobeforeafter, 
+    tcbox raise base,
+    enhanced, 
+    width=\textwidth,
+    title={#1},
+    colframe=red!75!black,
+    colback=red!10, 
+    boxrule=2pt,
+    drop fuzzy shadow=blue]}
+    {\endtcolorbox}
 
-% Utility Functions
+  \newenvironment{note}[1][]{%
+    \setlength{\abovedisplayskip}{2pt}
+    \setlength{\belowdisplayskip}{2pt}
+    \tcolorbox[nobeforeafter, 
+    tcbox raise base,
+    enhanced, 
+    width=\textwidth,
+    title={#1},
+    colframe=red!75!black,
+    colback=red!10, 
+    boxrule=2pt,
+    drop fuzzy shadow=blue]}
+    {\endtcolorbox}
+
+% Utility Functions & Preferences
+  \newcommand{\wpr}{\succsim}
+  \newcommand{\spr}{\succ}
   \newcommand{\crra}[1]{\frac{\left(#1\right)^{1-\gamma}}{1-\gamma}}
   \newcommand{\risk}{1-\gamma}
 
 % Distributions
   \newcommand{\Normal}[2]{
-  \ifthenelse{\equal{#1}{} \AND \equal{#2}{}}{\mathcal{N}\left(\mu,\sigma^2\right)}{\mathcal{N}\left(#1,#2\right)}%
+    \ifthenelse{\equal{#1}{} \AND \equal{#2}{}}{\mathcal{N}\left(\mu,\sigma^2\right)}{\mathcal{N}\left(#1,#2\right)}%
   }
 
+% Text commands
+  \newcommand{\cp}{ceteris paribus }
+  \newcommand{\st}{such that }
+  \renewcommand{\it}[1]{\textit{#1 }}
+  \renewcommand{\bf}[1]{\textbf{#1 }}
+
 % Game Theory
-  \newcommand{\Game}[1]{\Gamma \left(#1\right)}
+  % \newcommand{\Game}[1]{\Gamma \left(#1\right)}
+  \renewcommand{\Game}[1]{\Gamma \left(#1\right)}
+  \newcommand{\NE}{Nash equilibrium }
+  \newcommand{\BNE}{Bayesian Nash equilibrium }
+  \newcommand{\PBE}{Perfect Bayesian Nash equilibrium}
+  \newcommand{\PSNE}{pure strategy Nash equilibrium }
+  \newcommand{\MSNE}{mixed strategy Nash equilibrium }
+  \newcommand{\SPE}{subgame perfect equilibrium }
+  \newcommand{\THPE}{trembling hand perfect equilibrium }
+
+% Finance
+  \newcommand{\SDF}{stochastic discount factor }
 
 % Theorems etc.
   \newtheorem{theo}{Theorem}
-  \newtheorem{defi}[theo]{Definition}
-  \newtheorem{prop}[theo]{Proposition}
-  \newtheorem{rema}[theo]{Remark}
-  \newtheorem{coro}[theo]{Corollary}
-  \newtheorem{Problem}[theo]{Problem}
+  \newtheorem{defi}{Definition}
+  \newtheorem{prop}{Proposition}
+  \newtheorem{rema}{Remark}
+  \newtheorem{remark}{Remark}
+  \newtheorem{lemma}{Lemma}
+  \newtheorem{claim}{Claim}
+  \newtheorem{coro}{Corollary}
+  \newtheorem{Problem}{Problem}
 
   \newtheorem*{probcont}{Problem \continuation}
   \newcommand{\continuation}{??}
   \newenvironment{continueproblem}[1]
-   {\renewcommand{\continuation}{\ref{#1}}\probcont[cont]}
+   {\renewcommand{\continuation}{\ref{#1}}\probcont[continued]}
    {\endprobcont}

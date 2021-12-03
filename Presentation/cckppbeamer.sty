@@ -6,7 +6,13 @@
 
 \RequirePackage{amsfonts}
 \RequirePackage{amsmath}
+
+\RequirePackage{adjustbox}
+
+
 \RequirePackage{bm}
+\RequirePackage[skins,theorems]{tcolorbox}
+\RequirePackage{parskip}
 
 \RequirePackage{graphicx}
 
@@ -25,30 +31,9 @@
 % \setmainfont{Linux Libertine}
    % [Ligatures={Common,Rare,Historic}, Numbers=OldStyle]
 \RequirePackage{libertine}
-\newcommand{\svgfontsize}[0]{\fontsize{9}{10}\selectfont}
 
 \captionsetup[table]{position=above}
 \captionsetup[table]{skip=2pt}
-
-%% Math operators
-\newcommand{\E}[1]{\mathbb{E}\left[#1\right]}
-\newcommand{\Var}[1]{\operatorname{Var}\left( #1 \right)}
-\newcommand{\Cov}[1]{\operatorname{Cov}\left( #1 \right)}
-\newcommand{\bforall}[0]{\hspace{0.1cm} \forall \hspace{0.1cm}}
-\DeclareMathOperator*{\argmin}{\arg\!\min}
-\DeclareMathOperator*{\argmax}{\arg\!\max}
-\DeclareMathOperator*{\plim}{plim}
-\newcommand\sosd{\mathrel{\overset{\makebox[0pt]{\mbox{\normalfont\tiny\sffamily SOSD}}}{>}}}
-\newcommand\fosd{\mathrel{\overset{\makebox[0pt]{\mbox{\normalfont\tiny\sffamily FOSD}}}{>}}}
-\newcommand{\vect}[1]{\boldsymbol{#1}}
-
-\renewcommand\CancelColor{\color{red}}
-
-\newtheorem{theo}{Theorem}
-\newtheorem{defi}{Definition}
-\newtheorem{prop}{Proposition}
-\newtheorem{rema}{Remark}
-\newtheorem{coro}{Corollary}
 
 \newcommand{\backupbegin}{
 	\newcounter{finalframe}
@@ -57,3 +42,216 @@
 \newcommand{\backupend}{
 	\setcounter{framenumber}{\value{finalframe}}
 }
+
+% Beamer Buttons
+\newcommand{\button}[2]{\hyperlink{#1}{\beamergotobutton{#2}}}
+
+% Color Settings 
+  \definecolor{cardinal}{HTML}{8C1515}
+  \definecolor{brgreen}{HTML}{005630}
+  \definecolor{oranje}{HTML}{ff8c00}
+
+  \newcommand{\red}{\color{cardinal}}
+  % \newcommand{\black}{\color{black}}
+  \newcommand{\green}{\color{brgreen}}
+  \newcommand{\blue}{\color{blue}}
+  \newcommand{\orange}{\color{oranje}}
+
+  \hypersetup{
+    breaklinks,
+    colorlinks,
+    linkcolor={red!50!black},
+    citecolor={blue!50!black},
+    urlcolor={blue!80!black},
+    % pdfauthor={Christian Kontz}
+  }
+
+  \renewcommand\CancelColor{\color{red}}
+
+  \newtcbox{\mymath}[1][]{%
+      nobeforeafter, 
+      math upper,
+      tcbox raise base,
+      enhanced, 
+      colframe=red,
+      colback=white, 
+      boxrule=2pt,
+      drop fuzzy shadow=blue,
+      #1
+      }
+
+% Caption Settings
+  \captionsetup[table]{position=above}
+  \captionsetup[table]{skip=2pt}
+
+% List Settings
+  % \setlist[enumerate]{topsep=1pt}
+
+% SVG Fonts Settings
+  \newcommand{\svgfontsize}[0]{\fontsize{9}{10}\selectfont}
+
+
+%% Math operators
+  \newcommand{\Set}[1]{\left\{ #1 \right\}}
+
+  \newcommand{\Lim}[1]{\raisebox{0.5ex}{\scalebox{0.8}{$\displaystyle \lim_{#1}\;$}}}
+  \newcommand{\dx}[1]{\mathop{\mathrm{d}#1}}
+
+  \newcommand{\qtext}[1]{\qquad \text{#1 }}
+
+  \newcommand{\ubar}[1]{\underbar{#1}}
+  \renewcommand{\t}[1]{\tilde{#1}}
+  \newcommand{\ut}[1]{\underaccent{\tilde}{#1}}
+
+  \newcommand{\ind}[1]{\mathds{1}_{#1}}
+
+  \newcommand{\ub}[2]{\underbrace{#1}_{#2}}
+  \newcommand{\utext}[2]{\underbrace{#1}_{#2}}
+  
+  \newcommand{\e}[1]{{e}^{#1}}
+  \newcommand{\Exp}[1]{\operatorname{exp}\left( #1 \right)}
+  \newcommand{\diag}[1]{\operatorname{diag}\left( #1 \right)}
+  \newcommand*\di{\mathop{}\!\mathrm{d}}
+  \newcommand{\bforall}[0]{\hspace{0.1cm} \forall \hspace{0.1cm}}
+
+  \renewcommand{\Pr}[1]{\operatorname{Pr}\left[ #1 \right]}
+  \newcommand{\E}[2]{\mathbb{E}_{#1}\left[#2\right]}
+  \newcommand{\ERN}[2]{\mathbb{E}^\star_{#1}\left[#2\right]}
+  \newcommand{\Et}[1]{\mathbb{E}_{#1}}
+  \newcommand{\V}[2]{\mathbb{V}_{#1}\left[#2\right]}
+  % \newcommand{\C}[2]{\operatorname{Cov}_{#1}\left[#2\right]}
+
+  \newcommand{\LRE}[1]{\tilde{\mathbb{E}}\left[#1\right]}
+  
+  \newcommand{\var}[2]{\operatorname{Var}_{#1}\left[ #2 \right]}
+  \newcommand{\corr}[2]{\operatorname{corr}_{#1}\left( #2 \right)}
+  \newcommand{\cov}[2]{\operatorname{Cov}_{#1}\left[ #2 \right]}
+  \newcommand{\varRN}[2]{\operatorname{Var}^{\star}_{#1}\left[ #2 \right]}
+
+  \newcommand{\Var}[1]{\operatorname{Var}\left[ #1 \right]}
+  \newcommand{\Cov}[1]{\operatorname{Cov}\left[ #1 \right]}
+  \newcommand{\Log}[1]{\operatorname{log}\left( #1 \right)}
+  \newcommand{\Ln}[1]{\operatorname{ln}\left( #1 \right)}
+
+
+  \DeclareMathOperator*{\argmin}{\arg\!\min}
+  \DeclareMathOperator*{\argmax}{\arg\!\max}
+  \DeclareMathOperator*{\plim}{plim}
+  \DeclareMathOperator*{\supp}{supp}
+
+  \newcommand{\vect}[1]{\boldsymbol{#1}}
+  \newcommand{\Lra}{\Leftrightarrow}
+  \newcommand{\Ra}{\Rightarrow}
+  \newcommand{\La}{\Leftarrow}
+  \newcommand{\ra}{\rightarrow}
+  \newcommand{\la}{\leftarrow}
+
+  \newcommand{\R}[1]{\mathbb{R}^{#1}}
+  \newcommand{\N}{\mathbb{N}}
+
+  \newcommand{\sto}{\text{subject to}\quad}
+
+  \newcommand{\sdif}[2]{\frac{\partial^2 #1}{\partial #2 ^2}}
+  \newcommand{\cdif}[3]{\frac{\partial^2 #1}{\partial #2 \partial #3 }}
+  \newcommand{\fdif}[2]{\frac{\partial #1}{\partial #2}}
+
+  \newcommand\sosd{\mathrel{\overset{\makebox[0pt]{\mbox{\normalfont\tiny\sffamily SOSD}}}{>}}}
+  \newcommand\fosd{\mathrel{\overset{\makebox[0pt]{\mbox{\normalfont\tiny\sffamily FOSD}}}{>}}}
+
+  \newcommand{\mat}[1]{\begin{pmatrix} #1 \end{pmatrix}}
+  \newcommand{\bmat}[1]{\begin{bmatrix} #1 \end{bmatrix}}
+  \newcommand{\eqz}{\overset{!}{=}0}
+
+  \newcommand{\foc}{\text{FOC:}}
+  \newcommand{\soc}{\text{SOC:}}
+  \newcommand{\nn}{\nonumber \\}
+
+  % Sets
+  \newcommand{\union}{\cup}
+
+
+  % Linear Algebra
+  \newcommand{\rank}[1]{\operatorname{rank}\left( #1 \right)}
+
+  \newcommand\Circle[1]{%
+    \def\useanchorwidth{T}%
+    \def\stacktype{L}%
+    \stackon[0pt]{#1}{\scalebox{2.8}[1.15]{\textcolor{red}{$\bigcirc$}}}%
+  }
+
+% New Environments
+  \newenvironment{result}{%
+      \empheq[box={\mymath}]{align*}}{\endempheq}
+
+   \newenvironment{resultnum}{%
+      \empheq[box={\mymath}]{align}}{\endempheq}
+
+  \newenvironment{prompt}[1][]{%
+    \tcolorbox[nobeforeafter, 
+    tcbox raise base,
+    title={#1},
+    % coltitle=black,
+    enhanced, 
+    width=\textwidth,
+    colframe=grey,
+    colback=lgrey, 
+    boxrule=2pt,
+    drop fuzzy shadow=grey]}%
+    {\endtcolorbox}
+  
+  \newenvironment{ans}[1][]{%
+    \setlength{\abovedisplayskip}{4pt}
+    \setlength{\belowdisplayskip}{4pt}
+    \tcolorbox[nobeforeafter, 
+    tcbox raise base,
+    enhanced, 
+    width=\textwidth,
+    title={#1},
+    colframe=red!75!black,
+    colback=red!10, 
+    boxrule=2pt,
+    drop fuzzy shadow=blue]}
+    {\endtcolorbox}
+
+% Utility Functions & Preferences
+  \newcommand{\wpr}{\succsim}
+  \newcommand{\spr}{\succ}
+  \newcommand{\crra}[1]{\frac{\left(#1\right)^{1-\gamma}}{1-\gamma}}
+  \newcommand{\risk}{1-\gamma}
+
+% Distributions
+  \newcommand{\Normal}[2]{
+    \ifthenelse{\equal{#1}{} \AND \equal{#2}{}}{\mathcal{N}\left(\mu,\sigma^2\right)}{\mathcal{N}\left(#1,#2\right)}%
+  }
+
+% Text commands
+  \newcommand{\cp}{ceteris paribus }
+  \newcommand{\st}{such that }
+
+% Game Theory
+  % \newcommand{\Game}[1]{\Gamma \left(#1\right)}
+  % \renewcommand{\Game}[1]{\Gamma \left(#1\right)}
+  \newcommand{\NE}{Nash equilibrium }
+  \newcommand{\BNE}{Bayesian Nash equilibrium }
+  \newcommand{\PSNE}{pure strategy Nash equilibrium }
+  \newcommand{\MSNE}{mixed strategy Nash equilibrium }
+  \newcommand{\SPE}{subgame perfect equilibrium }
+  \newcommand{\THPE}{trembling hand perfect equilibrium }
+
+% Finance
+  \newcommand{\SDF}{stochastic discount factor }
+
+% Theorems etc.
+  \newtheorem{theo}{Theorem}
+  \newtheorem{defi}{Definition}
+  \newtheorem{prop}{Proposition}
+  \newtheorem{rema}{Remark}
+  \newtheorem{claim}{Claim}
+  \newtheorem{coro}{Corollary}
+  % \newtheorem{Problem}{Problem}
+
+  % \newtheorem*{probcont}{Problem \continuation}
+  % \newcommand{\continuation}{??}
+  % \newenvironment{continueproblem}[1]
+  %  {\renewcommand{\continuation}{\ref{#1}}\probcont[continued]}
+  %  {\endprobcont}

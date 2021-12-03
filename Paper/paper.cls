@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{problemset}[2014/08/16 Problem Set class]
+\ProvidesClass{paper}[2014/08/16 Academic Paper class]
 
 \LoadClass[12pt]{article}
 \RequirePackage{fancyhdr}
@@ -24,21 +24,21 @@
 
 \author{\texorpdfstring{\@MyAuthor{} --  \@MyEmail}{\@MyAuthor{}}}
 
-\newcommand{\buildtitle}{
-		\vspace{-2cm}
-		% \vspace{-5em}
-		\maketitle
-		% \begin{center}
-		\vspace{-1cm}
-		% \end{center}
-		% \noindent
-		\rule{\linewidth}{0.5pt}
-}
+% \newcommand{\buildtitle}{
+% 		\vspace{-2cm}
+% 		% \vspace{-5em}
+% 		\maketitle
+% 		% \begin{center}
+% 		\vspace{-1cm}
+% 		% \end{center}
+% 		% \noindent
+% 		\rule{\linewidth}{0.5pt}
+% }
 
-\pagestyle{fancy}
-\fancyhf{}
-\rhead{\@MyAuthor}
-\lhead{\@MyTitle{} -- \@MySubtitle{}}
-\fancyfoot[C]{\thepage}
-\setlength{\headsep}{0.35in}
+% \pagestyle{fancy}
+% \fancyhf{}
+% \rhead{\@MyAuthor}
+% \lhead{\@MyTitle{} -- \@MySubtitle{}}
+% \fancyfoot[C]{\thepage}
+% \setlength{\headsep}{0.35in}
 % \setlength\parindent{0pt}
