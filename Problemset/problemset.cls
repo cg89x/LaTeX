@@ -32,7 +32,7 @@
 		\vspace{-1cm}
 		% \end{center}
 		% \noindent
-		\rule{\linewidth}{0.5pt}
+		\rule{\textwidth}{0.5pt}
 }
 
 \pagestyle{fancy}
@@ -42,3 +42,8 @@
 \fancyfoot[C]{\thepage}
 \setlength{\headsep}{0.35in}
 % \setlength\parindent{0pt}
+
+% \makeatletter
+% \def\headrule{\nointerlineskip\if@fancyplain\let\headrulewidth\plainheadrulewidth\fi%
+%     {\hfil\rule{0.5\headwidth}{\headrulewidth}} \vskip-\headrulewidth}
+% \makeatother

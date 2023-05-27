@@ -1,0 +1,121 @@
+\documentclass{ltxdoc}
+\title{The \textsf{\gradientRGB{gradient-text}{255,63,63}{6,60,255}} package\footnote{This project is under the \LaTeX~Project Public License.}}
+\usepackage{listings}
+\lstset{
+    basicstyle=\fontspec{Consolas},numbers=left,
+    numberstyle=\small,stepnumber=1,numbersep=5pt
+}
+\usepackage{indentfirst}
+\usepackage{fontspec}
+\setmainfont{Times New Roman}
+\usepackage{tcolorbox}
+\usepackage[misc,geometry]{ifsym}
+\author{Sicheng Du\thanks{\Letter~~\href{mailto:siddsc@foxmail.com}{\gradientRGB{siddsc@foxmail.com}{0,224,238}{173,0,254}}}}
+\date{\today~~~~v1.2}
+\usepackage[colorlinks,linkcolor=purple]{hyperref}
+\usepackage{gradient-text}
+\begin{document}
+\maketitle
+\section{Changes in this version}
+Thanks to the \TeX nicians who kindly gave valuable and earnest suggestions to this package, the version 1.2 is now released. The main changes include
+\begin{enumerate}
+\item Made the syntax of the user command more convenient;
+\item Modified the format in the source code to improve compatibility;
+\end{enumerate}
+\section{User instructions}
+The \textsf{gradient-text} package enables writers to conveniently decorate text with linear gradient colors. It's effect can be seen from the title.
+
+\begin{macro}{\gradientRGB}
+\marg{text}\marg{first RGB}\marg{last RGB}
+This is the syntax of the command for putting gradient color on text . It takes three mandatory arguments.
+\end{macro}
+\begin{description}
+\item[\marg{text}] is the text you desire to have gradient color. Be aware that this command most likely wouldn't output content as expected if this parameter is filled with tokens that cannot expand into pure text. Below are two examples.
+\begin{tcolorbox}[sidebyside,coltitle=black,colbacktitle=white,lower separated=false,title=A correct usage,oversize,boxrule=0.5pt]
+\begin{verbatim}
+\newcommand{\hello}{Hello!}
+\gradientRGB{\hello}{0,255,0}{255,0,0}
+\end{verbatim}
+\tcblower
+\hfill\gradientRGB{Hello!}{0,255,0}{255,0,0}
+\end{tcolorbox}
+\begin{tcolorbox}[sidebyside,coltitle=orange,colbacktitle=white,lower separated=false,title=\SmallCross~An incorrect usage,oversize,boxrule=0.5pt]
+\begin{verbatim}
+\newcommand{\hello}{\textit{Hello!}}
+\gradientRGB{\hello}{0,255,0}{255,0,0}
+\end{verbatim}
+\tcblower
+\hfill\gradientRGB{\textit{Hello!}}{0,255,0}{255,0,0}
+\end{tcolorbox}
+For this wrong example, the intended result can be obtained by
+\begin{quote}
+\verb|\textit{\gradientRGB{hello!}{0,255,0}{255,0,0}}|
+\end{quote}
+just like how I created the title by typing
+\begin{quote}
+\verb|\textsf{\gradientRGB{gradient-text}{255,63,63}{6,60,255}}|
+\end{quote}
+
+In addition, for any space characters in \marg{text}, they will not be take a unique color, although they will still show up in their original position.
+\begin{tcolorbox}[coltitle=black,colbacktitle=white,lower separated=false,title=Example of space characters,oversize,boxrule=0.5pt]
+\verb|\gradientRGB{Hello   World}{0,255,0}{255,0,0}|\hfill\gradientRGB{Hello   World}{0,255,0}{255,0,0}
+\tcblower
+\verb|\gradientRGB{HelloWorld}{0,255,0}{255,0,0}|\hfill\gradientRGB{HelloWorld}{0,255,0}{255,0,0}
+\end{tcolorbox}
+\item[\marg{first RGB}] specifies the RGB value given to the first character of the \marg{text}. It should be formatted as a three-item comma list in brackets \verb|{}|, of which each item is a natural number not exceeding 255.
+
+All of \verb|{13,28,176}|, \verb|{0,59,2}| and \verb|{255,34,5}| are correct examples.
+\item[\marg{last RGB}] is similar to \marg{first RGB} except that it controls the RGB color of the last character in the \marg{text}.
+\end{description}
+
+\emph{\gradientRGB{Notice.}{11,45,14}{191,98,10}} The syntax of \marg{first RGB} and \marg{last RGB} have changed. Version 1.1 required an additional pair of curly brackets.
+
+\section{Code implementation}
+Here is the heading,
+\begin{lstlisting}[firstnumber=4]
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{gradient-text}[2022/12/24]
+\ExplSyntaxOn
+\end{lstlisting}
+
+Then we define some variables
+\begin{lstlisting}[firstnumber=last]
+\clist_new:N\l_gtext_FirstRGB_clist
+\clist_new:N\l_gtext_LastRGB_clist
+\int_new:N\l_gtext_MaxIndex_int      % max index (detach spaces)
+\int_new:N\l_gtext_Ratio_int
+\end{lstlisting}
+
+Now we define the internal command \cs{gr@dientRGB}
+\begin{lstlisting}[firstnumber=last,breaklines=true]
+\newcommand{\gr@dientRGB}[7]{
+  \int_set:Nn\l_gtext_MaxIndex_int{\int_eval:n{\str_count:n{#1}}}
+  \int_step_inline:nnn{1}{\l_gtext_MaxIndex_int}{
+      \exp_args:Ne\str_if_eq:nnTF{\str_item:Nn{#1}{##1}}{~}{}{
+        \int_set:Nn\l_gtext_Ratio_int{\int_eval:n{\l_gtext_Ratio_int+1}}
+      }
+        \color_select:nn{RGB}{
+          \int_eval:n{(\int_use:N\l_gtext_Ratio_int*#5+(\l_gtext_MaxIndex_int-##1)*#2)/\l_gtext_MaxIndex_int},
+          \int_eval:n{(\int_use:N\l_gtext_Ratio_int*#6+(\l_gtext_MaxIndex_int-##1)*#3)/\l_gtext_MaxIndex_int},
+          \int_eval:n{(\int_use:N\l_gtext_Ratio_int*#7+(\l_gtext_MaxIndex_int-##1)*#4)/\l_gtext_MaxIndex_int}
+      }\str_item:Nn{#1}{##1}
+  }
+}
+\end{lstlisting}
+
+Lastly we define the user command. The \textsf{l3clist} package is used to interpret the parameters into three integers.
+\begin{lstlisting}[firstnumber=last]
+\NewDocumentCommand\gradientRGB{mmm}{{
+  \clist_set:Nn\l_gtext_FirstRGB_clist {#2}
+  \clist_set:Nn\l_gtext_LastRGB_clist {#3}
+  \gr@dientRGB{#1}
+  {\clist_item:Nn\l_gtext_FirstRGB_clist{1}}
+  {\clist_item:Nn\l_gtext_FirstRGB_clist{2}}
+  {\clist_item:Nn\l_gtext_FirstRGB_clist{3}}
+  {\clist_item:Nn\l_gtext_LastRGB_clist{1}}
+  {\clist_item:Nn\l_gtext_LastRGB_clist{2}}
+  {\clist_item:Nn\l_gtext_LastRGB_clist{3}}
+}}
+\ExplSyntaxOff
+\end{lstlisting}
+\end{document}

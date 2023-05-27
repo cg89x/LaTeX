@@ -39,6 +39,13 @@
   \RequirePackage{empheq}
   \RequirePackage[skins,theorems,most]{tcolorbox}
 
+  \RequirePackage{pifont}% http://ctan.org/pkg/pifont
+  \newcommand{\cmark}{\ding{51}}%
+  \newcommand{\xmark}{\ding{55}}%
+
+  \RequirePackage{ulem}
+  \newcommand\cncl{\bgroup\markoverwith{\textcolor{red}{\rule[0.5ex]{2pt}{0.4pt}}}\ULon}
+
 % Color Settings 
   \definecolor{cardinal}{HTML}{8C1515}
   \definecolor{brgreen}{HTML}{005630}
